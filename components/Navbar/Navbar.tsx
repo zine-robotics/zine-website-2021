@@ -1,7 +1,7 @@
 import Link from "next/link";
 import logo from "../../images/zine1.png";
 import hamburger from "../../images/hamburger.svg";
-import Image from "next/image";
+import Image,{StaticImageData} from "next/image";
 import React, { useEffect, useState } from "react";
 import home from "../../images/home-icon.webp";
 import about from "../../images/about.webp";
