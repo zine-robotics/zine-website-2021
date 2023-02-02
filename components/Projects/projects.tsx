@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Script from "next/script";
 import img1 from "../../images/blog/algo/algo/image1.jpg"
 
@@ -159,7 +160,7 @@ const Projects = () => {
            
               <button className="btn inline-block md:hidden font-bold" onClick={() => setShowMore16(!showMore16)}>{showMore16 ? `Show Less` : `Show More`}</button>
               <div className="cursor-pointer mt-4">
-                <Link href={bipedvideo}><FontAwesomeIcon icon={faYoutube} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
+                <Link href={bipedvideo}><FontAwesomeIcon icon={faYoutube as IconProp} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
               </div>
               <p className="pt-8">Team Members: Devang Darode, Karsh Tharyani, Ayush Jhalani</p>
             </div>
@@ -179,7 +180,7 @@ const Projects = () => {
               <p className="hidden md:inline-block">{bcitext}</p>
               <button className="btn inline-block md:hidden font-bold" onClick={() => setShowMore1(!showMore1)}>{showMore1 ? `Show Less` : `Show More`}</button>
               <div className="cursor-pointer mt-4">
-                <Link href={bcivideo}><FontAwesomeIcon icon={faYoutube} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
+                <Link href={bcivideo}><FontAwesomeIcon icon={faYoutube as IconProp} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
               </div>
               <h1 className="pt-8">Team Members: Saurab Aggarwal Bhanu Pratap Singh Rawat</h1>
             </div>
@@ -252,7 +253,7 @@ const Projects = () => {
               <button className="btn inline-block md:hidden font-bold" onClick={() => setShowMore5(!showMore5)}>{showMore5 ? `Show Less` : `Show More`}</button>
 
               <div className="cursor-pointer mt-4">
-                <Link href={gaitvideo}><FontAwesomeIcon icon={faYoutube} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
+                <Link href={gaitvideo}><FontAwesomeIcon icon={faYoutube as IconProp} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
               </div>
               <h1 className="pt-4">Team Members: Anshul Mittal, Kanika Gupta</h1>
             </div>
@@ -339,7 +340,7 @@ const Projects = () => {
            
               <button className="btn inline-block md:hidden font-bold" onClick={() => setShowMore10(!showMore10)}>{showMore10 ? `Show Less` : `Show More`}</button>
               <div className="cursor-pointer mt-4">
-                <Link href={roboticvideo}><FontAwesomeIcon icon={faYoutube} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
+                <Link href={roboticvideo}><FontAwesomeIcon icon={faYoutube as IconProp} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
               </div>
               <p className="pt-8">Team Members: Akash Shah, Akshay Kumar, Anirudha Kumar, Anshul Mittal, Rajat Arya, Sharad Garg</p>
             </div>
@@ -428,7 +429,7 @@ const Projects = () => {
            
               <button className="btn inline-block md:hidden font-bold" onClick={() => setShowMore15(!showMore15)}>{showMore15 ? `Show Less` : `Show More`}</button>
               <div className="cursor-pointer mt-4">
-                <Link href={actroidvideo}><FontAwesomeIcon icon={faYoutube} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
+                <Link href={actroidvideo}><FontAwesomeIcon icon={faYoutube as IconProp} className="text-red-600 hover:text-red-500 mr-4" size="2x" /></Link>
               </div>
               <h1 className="pt-8">Team Members: Karsh Tharyani, Vishakha Tyagi, Jatin Verma</h1>
             </div>
