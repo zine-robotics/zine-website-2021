@@ -1,11 +1,10 @@
-import { Timestamp, arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
+import { Timestamp, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import styles from "../../constants/styles";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { db } from "../../firebase";
-import sendFCMMessage from "../../apis/sendFcm";
-import { IMessageData, getMessages, getRoom } from "../../apis/room";
 import { IProject } from "../../apis/projects";
+import { Rating } from "react-simple-star-rating";
 
 const URL_REGEX = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
 
@@ -13,9 +12,6 @@ const Comments = ({ projectData }: { projectData: IProject }) => {
   const [project, setProject] = useState(projectData);
   const [comment, setComment] = useState("");
   const { authUser } = useAuth();
-  useEffect(() => {
-    console.log("project data11", project);
-  }, [project]);
 
   const addComment = () => {
     if (!project) return;
@@ -28,8 +24,17 @@ const Comments = ({ projectData }: { projectData: IProject }) => {
     updateDoc(doc(db, "userTasks", project.id), {
       comments: arrayUnion(commentData),
     }).then(async () => {
-      const newComments = [...project?.comments, commentData];
+      let newComments;
+      if (project.comments) newComments = [...project.comments, commentData];
+      else newComments = [commentData];
       setProject({ ...project, comments: newComments });
+    });
+  };
+  const changeRating = (rating: number) => {
+    updateDoc(doc(db, "userTasks", project.id), {
+      rating: rating,
+    }).then(async () => {
+      setProject({ ...project, rating: rating });
     });
   };
 
@@ -39,9 +44,14 @@ const Comments = ({ projectData }: { projectData: IProject }) => {
         {/* Comments - only for admins */}
         {authUser!.type === "admin" && (
           <div className="flex flex-1 flex-col px-4 pt-2 pb-4">
-            <p className="font-bold text-center text-lg" style={{ color: "#0C72B0" }}>
-              COMMENTS
-            </p>
+            <div className="w-full flex" style={{ color: "#0C72B0" }}>
+              <div className="font-bold text-center text-2xl" style={{ marginLeft: "calc(45%)" }}>
+                COMMENTS
+              </div>
+              <div className="ml-auto">
+                <Rating initialValue={project?.rating} onClick={changeRating} SVGstyle={{ display: "inline-block" }} allowFraction={true} size={35} />
+              </div>
+            </div>
             {project.comments?.map((ele) => {
               return (
                 <div key={ele.timeDate.seconds} className="flex flex-1 flex-wrap flex-col md:flex-row my-2">

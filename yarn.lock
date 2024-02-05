@@ -3140,6 +3140,11 @@ react-razorpay@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-razorpay/-/react-razorpay-2.0.1.tgz#a8b2a5ccb86c2fd92c69e9bf14b4f1f3b26cf000"
   integrity sha512-eCVTqtAo3Ew6Ie9hjp3+a0BCJ7ZssSF4r2XNeikzXlk8WOD4W58wSSX7x/6R3OhL+yUkhCvW5zOSE8awDIGpAw==
 
+react-simple-star-rating@^5.1.7:
+  version "5.1.7"
+  resolved "https://registry.yarnpkg.com/react-simple-star-rating/-/react-simple-star-rating-5.1.7.tgz#5406ade8d0e117a654e979ebd702d89389876c29"
+  integrity sha512-NTFkW8W3uwvI82Fv7JW5i7gmDjEZKxJmj+Z9vn+BjYIXT6ILdnU9qnSUP2cWrWN/WAUlue81f9SgM4CQcenltQ==
+
 react-toastify@^9.1.3:
   version "9.1.3"
   resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-9.1.3.tgz"

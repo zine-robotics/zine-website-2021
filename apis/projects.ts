@@ -33,6 +33,7 @@ export interface IUserProject {
   id: string; // added for reference
   comments: IComment[];
   links: ILink[];
+  rating: number;
 }
 
 export interface IProject extends IUserProject {
@@ -48,6 +49,7 @@ export const createProject = async (taskid: string, users: string[]) => {
     users: users.map((u) => doc(usersCollection, u)),
     comments: [],
     links: [],
+    rating: 0,
   };
 
   const d = await addDoc(userTasksCollection, data);

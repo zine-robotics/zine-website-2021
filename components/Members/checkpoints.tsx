@@ -19,15 +19,13 @@ const Checkpoints = ({ projectData }: { projectData: IProject }) => {
   const [url, setURL] = useState("");
   const [urlType, setURLType] = useState("GitHub");
   const { authUser } = useAuth();
-  useEffect(() => {
-    console.log("project data11", project);
-  }, [project]);
+
   const roomName = `${projectData.taskData.title.split(" ")[0]}-${project.usersData[0].email.slice(4).split("@")[0]}`;
   useEffect(() => {
     getRoom(roomName).then((snapshots) => {
       snapshots.forEach((d) => {
         setGroupID(d.id);
-        const newmsg: IMessageData[] = [];
+        let newmsg: IMessageData[] = [];
         getMessages(d.ref, true, 20)
           .then((msgSnapshot) => {
             msgSnapshot.forEach((d) => {
@@ -35,6 +33,7 @@ const Checkpoints = ({ projectData }: { projectData: IProject }) => {
             });
           })
           .then(() => {
+            newmsg = newmsg.sort((a, b) => -b.timeStamp.seconds + a.timeStamp.seconds);
             setMessages(newmsg);
           });
       });
