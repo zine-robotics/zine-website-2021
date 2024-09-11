@@ -193,6 +193,28 @@ const SideNav = () => {
                   Projects
                 </p>
               </Link>
+              {/* <Link href="/admin/createblogs">
+                <p
+                  className={`text-xl hover:text-gray-300 cursor-pointer ${
+                    page === "projects"
+                      ? "font-bold"
+                      : ""
+                  }`}
+                >
+                  Create Blog
+                </p>
+              </Link> */}
+              {/* <Link href="/admin/blogsdisplay">
+                <p
+                  className={`text-xl hover:text-gray-300 cursor-pointer ${
+                    page === "projects"
+                      ? "font-bold"
+                      : ""
+                  }`}
+                >
+                  Blogs View
+                </p>
+              </Link> */}
             </div>
           )}
           {authUser!.type === "user" && (
@@ -259,6 +281,7 @@ const SideNav = () => {
                     Channels
                   </p>
                 </Link>
+                
               </div>
             </div>
           )}
@@ -362,5 +385,6 @@ const SideNav = () => {
     
   );
 };
+
 
 export default SideNav;

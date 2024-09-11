@@ -123,6 +123,16 @@ import kushal from "../images/members/2026/kushal.webp";
 import adityaW from "../images/members/2026/adityaW.webp";
 import herschelle from "../images/members/2026/herschelle.webp"
 
+import yuga from "../images/members/2027/yuga.webp";
+import aditi from "../images/members/2027/aditi.webp";
+import abhinavt from "../images/members/2027/abhinavt.webp";
+import abhinavg from "../images/members/2027/abhinavg.webp";
+import omkesh from "../images/members/2027/omkesh.webp";
+import mayank from "../images/members/2027/mayank.webp";
+import om from "../images/members/2027/om.webp";
+import deepesh from "../images/members/2027/deepesh.webp";
+import riya from "../images/members/2027/riya.webp";
+import aviral from "../images/members/2027/aviral.webp";
 interface Member {
   name: string;
   image: StaticImageData;
@@ -1356,7 +1366,7 @@ export const year2024: Member[] = [
   {
     name: "VINAMRA VASHISHTH",
     image: vinamra,
-    desc: "Computer Science Engineering",
+    desc: "Data Engineer at Melio",
     github: "",
     linkedin: "https://www.linkedin.com/in/vinamra-vashishth-721785201/",
     twitter: "",
@@ -1366,7 +1376,7 @@ export const year2024: Member[] = [
   {
     name: "NISHANT GARG",
     image: nishant,
-    desc: "Computer Science Engineering",
+    desc: "Software Engineer at Procore Technologie",
     github: "",
     linkedin: "https://www.linkedin.com/in/nishant-garg-968205208/",
     twitter: "",
@@ -1376,7 +1386,7 @@ export const year2024: Member[] = [
   {
     name: "DIVYANSH GARG",
     image: divyansh,
-    desc: "Electronics and Communication Engineering",
+    desc: "Software Engineer at Care Insurance",
     github: "",
     linkedin: "https://www.linkedin.com/in/dggrx/",
     twitter: "",
@@ -1386,7 +1396,7 @@ export const year2024: Member[] = [
   {
     name: "ABHINAV KUMAR",
     image: abhinavkumar,
-    desc: "Electrical Engineering",
+    desc: "AMTS at Salesforce",
     github: "",
     linkedin: "https://www.linkedin.com/in/abhinav-kumar-5b2097205/",
     twitter: "",
@@ -1396,7 +1406,7 @@ export const year2024: Member[] = [
   {
     name: "SUDESHNA SONKAR",
     image: sudeshna,
-    desc: "Mechanical Engineering",
+    desc: "",
     github: "",
     linkedin: "https://www.linkedin.com/in/sudeshna-sonkar-56b481209/",
     twitter: "",
@@ -1406,7 +1416,7 @@ export const year2024: Member[] = [
   {
     name: "PRANJALI SRIVASTAVA",
     image: pranjali,
-    desc: "Mechanical Engineering",
+    desc: "GTE at Bajaj Auto",
     github: "",
     linkedin: "https://www.linkedin.com/in/pranjali-srivastava-b229b8223/",
     twitter: "",
@@ -1416,7 +1426,7 @@ export const year2024: Member[] = [
   {
     name: "MAHAK GARG",
     image: mahak,
-    desc: "Electrical Engineering",
+    desc: "SDE at Flipkart",
     github: "",
     linkedin: "https://www.linkedin.com/in/mahak-garg-825213212/",
     twitter: "",
@@ -1436,7 +1446,7 @@ export const year2024: Member[] = [
   {
     name: "ASHOK KUMAR SAINI",
     image: ashok,
-    desc: "Electrical Engineering",
+    desc: "Motion Control System Engineer at Orangewood Labs",
     github: "",
     linkedin: "https://www.linkedin.com/in/ashok-kumar-saini-505b9b202/",
     twitter: "",
@@ -1650,3 +1660,115 @@ export const year2026: Member[] = [
     facebook: "",
   }
 ];
+export const year2027: Member[] = [
+  {
+    name: "Yug Agarwal",
+  image: yuga,
+  desc: "Electrical engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Aditi Srivastava",
+  image: aditi,
+  desc: "Architecture",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Abhinav Garg",
+  image: abhinavg,
+  desc: "Computer Science and Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Abhinav Thapliyal",
+  image: abhinavt,
+  desc: "Chemical Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Aviral Jain",
+  image: aviral,
+  desc: "Electronics and Communication Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Deepesh Ahriwar",
+  image: deepesh,
+  desc: "Computer Science and Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  
+  {
+    name: "Mayank Garg",
+  image: mayank,
+  desc: "Artificial Intelligence and Data Science Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Om Sonar",
+  image: om,
+  desc: "Computer Science and Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  {
+    name: "Omkesh Diwedi",
+  image: omkesh,
+  desc: "Electronics and Communication Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+
+  },
+  
+  {
+    name: "Mrunal Shah",
+  image: riya,
+  desc: "Computer Science and Engineering",
+  github: "",
+  linkedin: "",
+  twitter: "",
+  instagram: "",
+  facebook: "",
+  }]

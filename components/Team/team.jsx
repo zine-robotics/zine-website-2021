@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFacebook, faTwitter, faInstagram, faLinkedin, faGithub,  faWordpress} from '@fortawesome/free-brands-svg-icons';
 import team from "../../images/team.jpeg"
 import RajeshSir from "../../images/rajeshsir.webp"
-import { founders, year2024, year2025, year2026 } from "../../constants/members";
+import { founders, year2024, year2025, year2026,year2027 } from "../../constants/members";
 
 
 const Team = () => {
@@ -57,7 +57,7 @@ const Team = () => {
         { <h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">FINAL YEAR</h1> }
          { <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 pt-16 px-12 lg:px-24">
         {
-        year2024.map((item, index) => (
+        year2025.map((item, index) => (
           <div key={index} className="col-span-1">
             <h1 className="text-black py-2 font-nunito text-center">
               <div className="w-48 mx-auto member-hover">
@@ -81,7 +81,7 @@ const Team = () => {
       
         {<h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">THIRD YEAR</h1>}
         {<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 pt-16 px-12 lg:px-24">
-        {year2025.map((item, index) => (
+        {year2026.map((item, index) => (
           <div key={index} className="col-span-1">
             <h1 className="text-black py-2 font-nunito text-center">
               <div className="w-48 mx-auto member-hover">
@@ -104,11 +104,11 @@ const Team = () => {
 
         <h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">SECOND YEAR</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 pt-16 px-12 lg:px-24">
-        {year2026.map((item, index) => (
+        {year2027.map((item, index) => (
           <div key={index} className="col-span-1">
             <h1 className="text-black py-2 font-nunito text-center">
-              <div className="w-48 mx-auto member-hover">
-                <Image className="rounded-full" src={item.image} placeholder="blur"></Image>
+              <div className="w-48 h-30 mx-auto member-hover">
+                <Image className="rounded-full object-cover w-full h-full " src={item.image} placeholder="blur"></Image>
               </div>
               <p className="text-center text-xl font-bold">{item.name}</p>
               <p className="text-center text-md text-gray-600">{item.desc}</p>

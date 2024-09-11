@@ -1,5 +1,10 @@
 export const achievements = [
-    
+    {
+        cardTitle: "ISRO ROVER",
+        title: "IROC-U 2024",
+        cardDetailedText: "\"AI-Enhanced Diagnosis: Pediatric Chest X-Ray Classification for Bronchiolitis and Pneumonia\" presented at 7th International Conference on Image Information Processing ICIIP",
+        cardSubtitle:"Contributors: Zine 2026 Batch"
+    },
 
     {
         cardTitle: "Research Paper",
