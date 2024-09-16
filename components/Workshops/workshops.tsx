@@ -4,41 +4,30 @@ import React, {
   useEffect,
 } from "react";
 import Link from "next/link";
-import { IEventData, fetchRecruitmentEvents } from "../../apis/events";
-
-interface IWorkshopData {
-  name: string;
-  description: string;
-  eventType: string;
-  date: string;
-  time: string;
-  venue: string;
-  stage: number;
-  isHeading: boolean;
-}
+import { IEventData, IRecruitmentData, getAllEvents, getAllRecruitments } from "../../apis/events";
+import { toast } from "react-toastify";
 
 interface IStageProps {
-  workshops: IWorkshopData[];
+  events: IEventData[];
   state: { selected: number };
   stage: number;
   select: (id: number) => void;
+  right: boolean;
 }
 
-export interface IWorkshopProps {
-  recruitmentEvents: IEventData[]
-}
+// export interface IWorkshopProps {
+//   recruitmentEvents: IEventData[]
+// }
 
 const Stage = ({
-  workshops,
+  events,
   state,
-  stage,
   select,
+  right
 }: IStageProps) => {
   return (
     <>
-      {workshops.map((item, key) => {
-        if (item.stage !== stage) return;
-        if (item.isHeading && workshops.filter(e=> e.stage == stage).length > 1)return;
+      {events.map((item, key) => {
         const card = (
           <div
             className={
@@ -68,24 +57,29 @@ const Stage = ({
                 : "col-start-6 col-end-9")
             }
           >
-            <h3
+            {/* <h3
               className="font-semibold sm:text-lg mb-1"
               style={{ color: "#C2FFF4" }}
             >
-              {item.date}
+              {(item.startDateTime as Date).toDateString()}
             </h3>
             <h3
               className="font-semibold sm:text-lg mb-1"
               style={{ color: "#C2FFF4" }}
             >
-              {item.time}
+              {
+                // (item.endDateTime === null) ?
+                (item.startDateTime as Date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+                // :
+                // (item.startDateTime as Date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + " - " + (item.endDateTime as Date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+              }
             </h3>
             <h3
               className="font-semibold text-md mb-1"
               style={{ color: "#C2FFF4" }}
             >
               {item.venue}
-            </h3>
+            </h3> */}
           </div>
         );
 
@@ -121,41 +115,46 @@ const Stage = ({
   );
 };
 
-const Workshops = ({ recruitmentEvents }: IWorkshopProps) => {
+const Workshops = () => {
   const [state, setState] = useState({
     selected: 0,
   });
-  const [workshops, setWorkshops] = useState(
-    [] as IWorkshopData[]
-  );
+  const [recruitments, setRecruitments] = useState<IRecruitmentData[]>([])
+  const [events, setEvents] = useState<IEventData[]>([])
 
   const select = (id: number) => {
     setState({ selected: id });
   };
 
   useEffect(() => {
-    const workshopdata = [] as IWorkshopData[];
-    let currentEvent = 0;
-    const currentDate = new Date();
-    // TODO: remove filter and apply logic
-    recruitmentEvents.filter(w => w.name !== 'Workshop').map(e => {
-      const { timeDate, ...wdata } = e
-      const _date = new Date(timeDate as unknown as number);
-      const date = _date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-      const time = _date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" });
-
-      if (currentDate > _date) currentEvent++;
-      workshopdata.push({
-        date,
-        time,
-        ...wdata,
-      });
+    getAllRecruitments().then((res) => {
+      if(res === undefined){
+        toast.error("Error fetching recruitments")
+        return;
+      }
+      res.sort((a, b) => a.stage - b.stage)
+      setRecruitments(res)
+    }).catch((error) => {
+      // console.log(error)
+      toast.error("Error fetching recruitments")
     })
-
-    setWorkshops(workshopdata);
-    setState({ selected: currentEvent });
-
-  }, []);
+    getAllEvents().then((res) => {
+      if(res === undefined){
+        toast.error("Error fetching events")
+        return;
+      }
+      for(const event of res){
+        event.startDateTime = new Date(event.startDateTime)
+        if(event.endDateTime !== null)  event.endDateTime = new Date(event.endDateTime)
+      }
+      res.sort((a, b) => (a.startDateTime as Date).getTime() - (b.startDateTime as Date).getTime())
+      setEvents(res)
+      // console.log(res)
+    }).catch((error) => {
+      // console.log(error)
+      toast.error("Error fetching events")
+    })
+  }, [])
 
   const handleKeyDown = (
     e: KeyboardEvent<HTMLElement>
@@ -165,11 +164,13 @@ const Workshops = ({ recruitmentEvents }: IWorkshopProps) => {
       setState({ selected: selected - 1 });
     } else if (
       e.key === "ArrowDown" &&
-      selected < workshops.length - 1
+      selected < events.length - 1
     ) {
       setState({ selected: selected + 1 });
     }
   };
+
+  let length = 0;
 
   return (
     <div
@@ -182,17 +183,17 @@ const Workshops = ({ recruitmentEvents }: IWorkshopProps) => {
     >
 
       <h1 className="text-white font-bold mt-24 text-2xl md:text-6xl">
-        Recruitment & Workshop
+        Recruitment & Workshops
       </h1>
 
-      <Link href="/workshops/registration">
+      {/* <Link href="/workshops/registration">
         <button
           className="mt-8 p-4 block rounded-3xl font-semibold text-lg bg-white"
           style={{ width: 300, color: "#0C72B0" }}
         >
           Register Now
         </button>
-      </Link>
+      </Link> */}
 
       {/* Timeline */}
       <div className="container my-24">
@@ -201,7 +202,7 @@ const Workshops = ({ recruitmentEvents }: IWorkshopProps) => {
           tabIndex={1}
           onKeyDown={handleKeyDown}
         >
-          <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
+          {/* <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
             <h3 className="font-bold">
               Aptitude Test
             </h3>
@@ -210,86 +211,35 @@ const Workshops = ({ recruitmentEvents }: IWorkshopProps) => {
             </h3>
           </div>
           <Stage
-            workshops={workshops}
+            events={events}
             state={state}
             select={select}
             stage={1}
-          />
-
-          <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
-            <h3 className="font-bold">
-              Workshops
-            </h3>
-            <h3 style={{ color: "#C2FFF4" }}>
-              Stage 2
-            </h3>
-          </div>
-          <Stage
-            workshops={workshops}
-            state={state}
-            select={select}
-            stage={2}
-          />
-
-          <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
-            <h3 className="font-bold">
-              Projects
-            </h3>
-            <h3 style={{ color: "#C2FFF4" }}>
-              Stage 3
-            </h3>
-          </div>
-          <Stage
-            workshops={workshops}
-            state={state}
-            select={select}
-            stage={3}
-          />
-
-          <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
-            <h3 className="font-bold">
-              Technical Screening
-            </h3>
-            <h3 style={{ color: "#C2FFF4" }}>
-              Stage 4
-            </h3>
-          </div>
-          <Stage
-            workshops={workshops}
-            state={state}
-            select={select}
-            stage={4}
-          />
-
-          <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
-            <h3 className="font-bold">
-              Group Discussions
-            </h3>
-            <h3 style={{ color: "#C2FFF4" }}>
-              Stage 5
-            </h3>
-          </div>
-          <Stage
-            workshops={workshops}
-            state={state}
-            select={select}
-            stage={5}
-          />
-
-          <div className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
-            <h3 className="font-bold">
-              Interviews
-            </h3>
-            <h3 style={{ color: "#C2FFF4" }}>
-              Stage 6
-            </h3>
-          </div>
-          <Stage
-            workshops={workshops}
-            state={state}
-            select={select}
-            stage={6}
-          />
+          /> */}
+          {
+            recruitments.map((recruitment, key) => {
+            const subevents = events.filter(event => event.recruitment === recruitment.stage)
+            length+=subevents.length
+            return (
+              <>
+              <div key={key} className="my-4 text-2xl text-white col-start-2 col-end-9 text-center">
+                <h3 className="font-bold">
+                  {recruitment.title}
+                </h3>
+                <h3 style={{ color: "#C2FFF4" }}>
+                  Stage {recruitment.stage}
+                </h3>
+              </div>
+              <Stage
+                events={subevents}
+                state={state}
+                select={select}
+                stage={recruitment.stage}
+                right={length % 2 === 0}
+              />
+              </>
+            )
+          })}
         </div>
       </div>
     </div>

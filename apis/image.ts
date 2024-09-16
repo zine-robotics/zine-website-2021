@@ -11,5 +11,7 @@ export const uploadImage = async(file: any, path: string)=>{
 
 export const deleteImage = async(path: string)=>{
     const storageRef = ref(storage, path)
-    deleteObject(storageRef).catch((e)=>{console.log(e)})
+    deleteObject(storageRef).catch((e)=>{
+        // console.log(e)
+    })
 }

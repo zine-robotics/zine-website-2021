@@ -34,7 +34,6 @@ const Channels = () => {
   const [stompClient, setStompClient] = useState<any>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [roomLastSeen, setRoomLastSeen] = useState<number>(0);
-
   const updateScreenWidth = () => {
     setScreenWidth(window.innerWidth);
   };
@@ -104,7 +103,7 @@ const Channels = () => {
         .then((res) => {
           setRooms(res);
           // console.log(res);
-
+          
         })
         .catch((err) => {
           // console.log(err);
@@ -112,7 +111,7 @@ const Channels = () => {
         getAnnouncementRoom(authUser.email).then((res) => {
           setAnnouncementRoom(res);
           // console.log(res); 
-
+          
         })
     }
   }, []);
@@ -254,11 +253,10 @@ const Channels = () => {
   useEffect(() => {
     // console.log("messages", messages);
   }, [messages]);
-useEffect(() => {
-  // console.log("curr room id", currRoomID);
-  
-}, [currRoomID])
+
   const handleRoomChange = (room: IRoomData, mobile: boolean) => {
+    // console.log(room);
+    
     if(currRoomID !== null)
       updateLastSeen(authUser?.email as string, currRoomID as number);
     setCurrRoomID(room.id);
@@ -314,11 +312,10 @@ useEffect(() => {
                   </div>
                     <div className="flex items-center">{announcementRoom?.name}</div>
                     <div className="text-xs ml-auto pr-2 flex items-center">{announcementRoom?.unreadMessages!=0 ? announcementRoom?.unreadMessages : <></>}</div>
-                </div>
-                {rooms.filter(room => room.type == 'workshop').length != 0 &&
+                  </div>
                   <div className="font-normal ml-2 mt-5" style={{ color: "#8D989F" }}>
-                    Workshops
-                  </div>}
+                  Workshops
+                </div>
                 {rooms &&
                   rooms.map((ele) => {
                     if (ele.id === null) return; //if room does not exist
@@ -373,10 +370,9 @@ useEffect(() => {
                       )
                     );
                   })}
-                {rooms.filter(room => room.type == 'group').length != 0 &&
-                  <div className="font-normal ml-2 mt-5" style={{ color: "#8D989F" }}>
-                    Groups
-                  </div>}
+                <div className="font-normal ml-2 mt-5" style={{ color: "#8D989F" }}>
+                  Groups
+                </div>
                 {rooms &&
                   rooms.map((ele) => {
                     if (ele.id === null) return; //if room does not exist
@@ -422,10 +418,9 @@ useEffect(() => {
                       )
                     );
                   })}
-                {rooms.filter(room => room.type == 'project').length != 0 &&
-                  <div className="font-normal ml-2 mt-5" style={{ color: "#8D989F" }}>
-                    Projects
-                  </div>}
+                <div className="font-normal ml-2 mt-5" style={{ color: "#8D989F" }}>
+                  Projects
+                </div>
                 {rooms &&
                   rooms.map((ele) => {
                     if (ele.id === null) return; //if room does not exist
@@ -679,7 +674,7 @@ useEffect(() => {
 
           {/* CHAT PART */}
           {screenWidth >= 768 ? (
-            <div className="flex-1 bg-gray-100 flex flex-col sm:w-full ">
+            <div className="flex-1 bg-gray-100 flex flex-col sm:w-full">
               {currRoomID && (
                 <div className="bg-white flex w-full py-3 my-auto">
                   <div
@@ -712,7 +707,7 @@ useEffect(() => {
               {/* <p className="whitespace-pre-wrap">
                                             {msg.message.split(/\s+/g).map(word => word.match(URL_REGEX) ? <><a href={word} className="text-blue-500 underline" target="_blank">{word}</a>{" "}</> : word + " ")}
                                         </p> */}
-              <div className="overflow-auto h-screen overflow-x-hidden">
+              <div className="overflow-auto h-screen">
                 {messages?.map((msg, idx, array) => {
                   const date = unixToHumanReadable(msg.timestamp);
                   const whiteRect = (idx + 1 < array.length && array[idx + 1].sentFrom.id !== msg.sentFrom.id) || idx == array.length - 1;
@@ -740,9 +735,9 @@ useEffect(() => {
 
                         {reply && user && <div className="flex w-full"><GetRepliedText msgID={reply.id} user={user} space={!whiteRect} /></div>}
                         {reply && !user && (
-                          <div className="flex flex-col w-full">
+                          <div className="flex flex-col">
                             <GetRepliedText msgID={reply.id} user={user} space={!whiteRect} />
-                            <div className="flex w-full">
+                            <div className="flex">
                               <RenderMessageWithLinks
                                 message={msg.content}
                                 user={user}
@@ -754,13 +749,13 @@ useEffect(() => {
                                 mobile={screenWidth < 768}
                               />
                               <div
-                                className={`ml-2 cursor-pointer mt-2 iconContainer`}
+                                className="ml-2 cursor-pointer mt-2"
                                 style={{ color: "#a9a9a9" }}
                                 onClick={() => {
                                   displayReply(msg.id, msg.sentFrom.name, msg.content);
                                 }}
                               >
-                                <FontAwesomeIcon className="iconInvisible" icon={faReply} />
+                                <FontAwesomeIcon icon={faReply} />
                               </div>
                             </div>
                           </div>
@@ -779,13 +774,13 @@ useEffect(() => {
                             />
                             {!user && (
                               <div
-                                className="ml-2 cursor-pointer mt-2 iconContainer"
+                                className="ml-2 cursor-pointer mt-2"
                                 style={{ color: "#a9a9a9" }}
                                 onClick={() => {
                                   displayReply(msg.id, msg.sentFrom.name, msg.content);
                                 }}
                               >
-                                <FontAwesomeIcon className="iconInvisible" icon={faReply} />
+                                <FontAwesomeIcon icon={faReply} />
                               </div>
                             )}
                           </>
@@ -820,7 +815,7 @@ useEffect(() => {
                 )}
                 {replyText && <div className="block w-fit">{truncateString(replyText)}</div>}
               </div>
-              {currRoom !== "Announcements" && currRoom !== "" ? (
+              {currRoom !== "" ? (
                 <div className="flex rounded-xl mx-2 border-2 mb-2 md:mb-2 mt-2 md:mx-4 bg-white max-h-16">
                   <textarea
                     className="w-full px-3 py-4 pl-5 outline-none bg-white rounded-xl"
@@ -880,7 +875,7 @@ useEffect(() => {
                   </div>
                 )}
               </div>
-              <div className={`pt-32 overflow-x-hidden ${hide ? "overflow-auto" : "overflow-auto"} h-screen pr-2`}>
+              <div className={`pt-32 ${hide ? "overflow-auto" : "overflow-auto"} h-screen pr-2`}>
                 {messages?.map((msg, idx, array) => {
                   const date = unixToHumanReadable(msg.timestamp);
                   const whiteRect = (idx + 1 < array.length && array[idx + 1].sentFrom.id !== msg.sentFrom.id) || idx == array.length - 1;
@@ -990,7 +985,7 @@ useEffect(() => {
                 )}
                 {replyText && <div className="block w-fit">{truncateString(replyText)}</div>}
               </div>
-              {currRoom !== "Announcements" && currRoom !== "" ? (
+              {currRoom !== "" ? (
                 <div className="max-h-14 flex rounded-xl mx-2 overflow-hidden border-2 mb-2 md:mb-2 mt-2 md:mx-4 bg-white">
                   <textarea
                     className="w-full px-3 py-4 pl-5 outline-none bg-white rounded-xl"

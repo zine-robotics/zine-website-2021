@@ -4,10 +4,8 @@ import {
 } from "../../components/Workshops";
 import { SecFooter } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
-import { fetchRecruitmentEvents } from "../../apis/events";
-import { IWorkshopProps } from "../../components/Workshops/workshops";
 
-const Home = ({ recruitmentEvents }: IWorkshopProps) => {
+const Home = () => {
   return (
     <>
       <Head>
@@ -15,21 +13,10 @@ const Home = ({ recruitmentEvents }: IWorkshopProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Navbar />
-      <Workshops recruitmentEvents={recruitmentEvents} />
+      <Workshops />
       <SecFooter />
     </>
   );
 };
-
-export async function getStaticProps() {
-  const data = await fetchRecruitmentEvents()
-  const recruitmentEvents = data.docs.map(d => ({ ...d.data(), timeDate: d.data().timeDate.toMillis() }))
-  return {
-    props: {
-      recruitmentEvents
-    },
-    revalidate: 60 * 60
-  }
-}
 
 export default Home;

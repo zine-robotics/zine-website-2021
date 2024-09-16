@@ -25,6 +25,7 @@ import Multi from "../../images/project/new/multi.jpeg";
 import actroid from "../../images/project/new/actroid.jpeg";
 import biped from "../../images/project/new/biped.jpg";
 import vtol from "../../images/project/new/vtol.jpeg";
+import isro from "../../images/comp_isro.webp";
 // Use mobile responsive navbar animation for projects section.
 
 const Projects = () => {
@@ -125,7 +126,7 @@ const Projects = () => {
   const vtoltext = "It is a Vertical Takeoff and Landing aircraft."
   const vtolvideo = "https://youtu.be/rb-q3BTk5Vk"
 
-
+  const rovertext = "It is a lunar rover designed as per the requirements of the IRoC-U 2024 challenge by ISRO. The rover can autonomously navigate through a surface containing craters and obstacles, and can also perform autonomous sample collection via the robotic arm. The rover is equipped with a stereo-camera for navigation and an Nvidia Jetson Xavier NX for processing. The navigation is done using Visual SLAM, and the software was developed using ROS2."
     return(
       <div className="text-black bg-white w-full h-full">
         <div className="py-20">
@@ -148,6 +149,21 @@ const Projects = () => {
             </div>
           </div> */}
 
+          <div className="shadower mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 mx-8 lg:mx-32 bg-gray-100 shadow-xl rounded-xl py-8 px-8 lg:px-16 hover:bg-gray-300 transition duration-500 ease-in-out">
+            <div className="col-span-1 my-auto">
+              <h1 className="inline-block md:hidden text-2xl font-bold mb-4">Lunar Rover</h1>
+              <Image src={isro} className="rounded-lg"/>
+            </div>
+            <div className="col-span-2">
+              <h1 className="text-2xl font-bold pb-4 hidden md:inline-block">Lunar Rover</h1>
+              <p className="inline-block md:hidden">{showMore16 ? rovertext : rovertext.substring(0, 150)+`...`}</p>
+              <p className="hidden md:inline-block mt-8">{rovertext}</p>
+           
+              <button className="btn inline-block md:hidden font-bold" onClick={() => setShowMore16(!showMore16)}>{showMore16 ? `Show Less` : `Show More`}</button>
+              <p className="pt-8">Team Members: Batch 2022 & Batch 2023</p>
+            </div>
+          </div>
+          
           <div className="shadower mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 mx-8 lg:mx-32 bg-gray-100 shadow-xl rounded-xl py-8 px-8 lg:px-16 hover:bg-gray-300 transition duration-500 ease-in-out">
             <div className="col-span-1 inline-block md:hidden my-auto">
               <h1 className="inline-block md:hidden text-2xl font-bold mb-4">Biped</h1>

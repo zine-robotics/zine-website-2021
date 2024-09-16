@@ -5,3 +5,5 @@ out.*
 backups
 .DS_Store
 .env
+.env.local
+pages/easterEggs/

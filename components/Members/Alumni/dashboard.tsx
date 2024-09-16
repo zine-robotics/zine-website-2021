@@ -30,9 +30,9 @@ const Donate = () => {
                 setRegistrations(regCount.data().count)
                 setTasks(tasksCount.data().count)
                 setUsers(userCount.data().count)
-                //console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+                //// console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
             }catch(error){
-                console.log("error fetching events", error)
+                // console.log("error fetching events", error)
             }
         }
         getEvents();
@@ -45,11 +45,11 @@ const Donate = () => {
         events.forEach((e)=>{
             if(e.stage == 2 && !e.isHeading) {
                 w.push(e)
-                console.log("pushing")
+                // console.log("pushing")
             } 
             if(e.isHeading === true) {r.push(e)}
-            console.log(w)
-            console.log(r)
+            // console.log(w)
+            // console.log(r)
             setWorkshops(w)
             setRecruitment(r)
         })

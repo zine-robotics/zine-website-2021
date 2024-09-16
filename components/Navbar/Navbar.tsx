@@ -236,11 +236,11 @@ const Navbar = () => {
                   </div>
                 </div>
               </Link>
-              {/* <Link href="/workshops">
+              <Link href="/workshops">
                 <div className="mb-2 cursor-pointer hidden lg:inline-block hover:text-gray-300">
                   <div className="link ">WORKSHOPS</div>
                 </div>
-              </Link> */}
+              </Link>
               <Link href="/gallery">
                 <div className="mb-2 cursor-pointer hidden lg:inline-block hover:text-gray-300">
                   <div className="link ">

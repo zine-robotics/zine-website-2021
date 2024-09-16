@@ -5,13 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFacebook, faTwitter, faInstagram, faLinkedin, faGithub,  faWordpress} from '@fortawesome/free-brands-svg-icons';
 import team from "../../images/team.jpeg"
 import RajeshSir from "../../images/rajeshsir.webp"
+ 2024
 import { founders, year2024, year2025, year2026,year2027 } from "../../constants/members";
+ team-2027
 
 
 const Team = () => {
     return(
       <div className="text-black bg-white justify-center pb-16">
-        <div className="keen-slider__slide number-slide11 h-60 md:h-100 lg:h-130 mb-4">
+        <div className="keen-slider__slide number-slide12 h-60 md:h-100 lg:h-130 mb-4">
           <div className="absolute left-8 pl-16 text-xl md:text-3xl lg:text-5xl">
             <p>Team</p>
           </div>
@@ -54,6 +56,7 @@ const Team = () => {
           </div>
         ))}
         </div>
+ 2024
         { <h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">FINAL YEAR</h1> }
          { <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 pt-16 px-12 lg:px-24">
         {
@@ -80,6 +83,9 @@ const Team = () => {
         </div> }
       
         {<h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">THIRD YEAR</h1>}
+
+            
+
         {<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 pt-16 px-12 lg:px-24">
         {year2026.map((item, index) => (
           <div key={index} className="col-span-1">
@@ -102,7 +108,7 @@ const Team = () => {
         ))}
         </div> }
 
-        <h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">SECOND YEAR</h1>
+        <h1 className="pt-12 text-center font-bold text-4xl px-12 lg:px-24">THIRD YEAR</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 pt-16 px-12 lg:px-24">
         {year2027.map((item, index) => (
           <div key={index} className="col-span-1">

@@ -47,7 +47,7 @@ const AptitudeForm = () => {
   const { register, reset, formState: {errors}, handleSubmit } = useForm<IRegistrationData>({})
 
   const addRegistration = async (data: IRegistrationData) => {
-    console.log(data);
+    // console.log(data);
     // if (!data.email.startsWith("2023")) return toast.error("Registration is open for first years only")
 
     const regRef = collection(db, "aptitudeRegs");

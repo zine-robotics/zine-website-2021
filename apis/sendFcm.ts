@@ -13,7 +13,7 @@ interface IMessage {
 
 async function sendFCMMessage(topic: string, title: string, body: string): Promise<void> {
   // Define the message body
-  console.log(`/topics/${topic}`);
+  // console.log(`/topics/${topic}`);
   const message: IMessage = {
     notification: {
       title,
@@ -34,12 +34,12 @@ async function sendFCMMessage(topic: string, title: string, body: string): Promi
 
     // Handle the response
     if (response.status === 200) {
-      console.log(`FCM message sent to topic ${topic}!`);
+      // console.log(`FCM message sent to topic ${topic}!`);
     } else {
-      console.log(`Error sending FCM message to topic ${topic}: ${response.data}`);
+      // console.log(`Error sending FCM message to topic ${topic}: ${response.data}`);
     }
   } catch (error) {
-    console.log(`Error sending FCM message to topic ${topic}: ${error}`);
+    // console.log(`Error sending FCM message to topic ${topic}: ${error}`);
   }
 }
 

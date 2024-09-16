@@ -37,13 +37,13 @@ const Registration = () => {
 
     const onSubmit = async (data: IRegistrationData) => {
         if (!data.email.startsWith("2022")) return setError("root.firstYear", { message: "" })
-        console.log(data)
+        // console.log(data)
         
         const q = query(regCollection, where("email", "==", data.email))
 
         try {
             const docExists = await getDocs(q)
-            console.log(docExists.size, docExists.docs)
+            // console.log(docExists.size, docExists.docs)
             if (docExists.size >= 1) {
                 return setError("root.duplicate", { message: "You have already registered with this email ID" })
             }
@@ -54,7 +54,7 @@ const Registration = () => {
             if (!users.empty) await updateDoc(doc(db, "users", users.docs[0].data().uid), { registered: true })
 
             localStorage.setItem('message', 'Registered for the workshop successfully!')
-            console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
             router.push('/workshops')
         } catch (error) {
             console.error("Error adding document: ", error);

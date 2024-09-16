@@ -71,13 +71,13 @@
 }
 
 .number-slide11 {
-  background: url("../images/alumni.jpg") rgba(0, 0, 0, 0.5);
+  background: url("../images/team.jpg") rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
   background-size: cover;
 }
 
 .number-slide12 {
-  background: url("../images/team.jpg") rgba(0, 0, 0, 0.5);
+  background: url("../images/team_photo_2024.webp") rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
   background-size: cover;
 }

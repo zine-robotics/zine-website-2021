@@ -40,7 +40,7 @@ const Donate = () => {
             pending: "Initiating payment"
         }).then(order => {
             const orderData = order.data as IDonation
-            console.log(orderData)
+            // console.log(orderData)
             const rzpay = new Razorpay({
                 key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
                 amount: amount.toString(),

@@ -2,7 +2,8 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Send from "../../images/icons/Send.png"
 import Instructions from "../../images/icons/Integration instructions.svg"
-import { askChatBot, reportIncorrectResponse } from "../../apis/chat";
+import { askChatBot, reportIncorrectResponse } from "../../apis/chat/chat";
+import ReactMarkdown from "react-markdown";
 
 const prompts = [
     "What is Zine?",
@@ -47,7 +48,8 @@ function RenderMessageWithLinks({ message }: {message: string}) {
   }
 
 const Chat = () => {
-    const [msg, setMsg] = useState("")
+    const [prompt, setPrompt] = useState("")
+    const [suggestedPrompts, setSuggestedPrompts] = useState<string[]>(prompts)
     const [loading, setLoading] = useState(false)
     const [reported, setReported] = useState(false)
     const [dots, setDots] = useState('.');
@@ -77,12 +79,12 @@ const Chat = () => {
         reportIncorrectResponse(chat[responseid-1].message, chat[responseid].message, true)
     }
 
-    const sendMessage = async (prompt="") => {
-        setMsg("")
-        if (!msg && !prompt) return
+    const sendMessage = async (suggestedPrompt="") => {
+        setPrompt("")
+        if (!prompt && !suggestedPrompt) return
         if (loading) return
         setReported(false)
-        const message = msg || prompt;
+        const message = prompt || suggestedPrompt;
 
         const userMessage = { message: message, author: "USER" } as ChatItem
         setChat(prev => [...prev, userMessage])
@@ -90,14 +92,20 @@ const Chat = () => {
         const interval = setInterval(() => {
             setDots(prevDots => (prevDots === '...' ? '.' : prevDots + '.'));
           }, 500);
+        let sessionid = localStorage.getItem('chatsession')
+        if (!sessionid) {
+            sessionid = Math.random().toString(16).slice(2)
+            localStorage.setItem('chatsession', sessionid)
+        }
 
-        const { data } = await askChatBot(message)
-        const chatMessage = { message: data.message, author: "BOT" } as ChatItem
+        const { answer, suggestions } = await askChatBot({prompt: message, session: sessionid})
+        setSuggestedPrompts(suggestions)
+        const chatMessage = { message: answer, author: "BOT" } as ChatItem
         setLoading(false)
         clearInterval(interval)
         setChat(prev => [...prev, chatMessage])
 
-        if (!prompts.includes(message)) await reportIncorrectResponse(message, data.message, false)
+        if (!suggestedPrompts.includes(message)) await reportIncorrectResponse(message, answer, false)
     }
 
     return (
@@ -138,8 +146,9 @@ const Chat = () => {
                                 (
                                 <div key={c.message}>
                                     <div className="py-2 px-4 rounded-2xl rounded-bl-none max-w-md flex relative md:max-w-4xl" style={{ background: "#0C72B0F2", width: "fit-content" }}>
-                                        {/* <div>{c.message}</div> */}
-                                        <RenderMessageWithLinks message={c.message}></RenderMessageWithLinks>
+                                        <div className="flex flex-col gap-4">
+                                            <ReactMarkdown>{c.message}</ReactMarkdown>
+                                        </div>
                                         {
                                         id === chat.length - 1 &&
                                         <button className="group ml-2 mt-1 mb-auto relative" onClick={() => incorrectReponse(id)}>
@@ -155,6 +164,7 @@ const Chat = () => {
                                             {/* <div className="hidden group-hover:block absolute bg-black text-white -top-5 -right-18 z-30 px-2 rounded-lg">Report incorrect response</div> */}
                                         </button>
                                         }
+
                                     </div>
                                     {/* {
                                         id === chat.length - 1 && !reported &&
@@ -175,13 +185,13 @@ const Chat = () => {
                 </div>
                 <div className="flex text-sm font-medium mt-4 gap-1 md:gap-2 overflow-x-auto" style={{ color: "#0C72B0F2" }}>
                     {
-                        prompts.map(p => (
+                        suggestedPrompts.map(p => (
                             <div key={p} className="rounded-3xl py-2 px-3 cursor-pointer whitespace-nowrap hover:opacity-75" onClick={() => {sendMessage(p)}} style={{ background: "#C2FFF48A", borderColor: "#0C72B0", borderWidth: 1.5 }}>{p}</div>
                         ))
                     }
                 </div>
                 <div className="flex rounded-xl overflow-hidden border-2 -mb-4 md:mb-2 mt-2" style={{ borderColor: "#AAA"}} >
-                    <input ref={inputRef} className="py-2 px-4 w-full outline-none" placeholder="Ask Zine AI beta your questions" value={msg} onChange={(e)=>{setMsg(e.target.value)}} onKeyDown={handleEnter}/>
+                    <input ref={inputRef} className="py-2 px-4 w-full outline-none" placeholder="Ask Zine AI beta your questions" value={prompt} onChange={(e)=>{setPrompt(e.target.value)}} onKeyDown={handleEnter}/>
                     <div className="pt-1 px-2 ml-1 mr-2 mt-1 cursor-pointer" onClick={() => sendMessage()}>
                         <Image src={Send} height={30} width={30} />
                     </div>

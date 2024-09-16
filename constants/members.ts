@@ -110,7 +110,6 @@ import meet from "../images/members/2025/meet.webp";
 import yug from "../images/members/2025/yug.png";
 import mashaal from "../images/members/2025/mashaal.webp";
 import anmol from "../images/members/2025/anmol.webp";
-import moordhan from "../images/members/2025/moordhan.webp";
 
 import aswin from "../images/members/2026/aswin.webp";
 import divyanshR from "../images/members/2026/divyansh.webp";
@@ -1376,7 +1375,9 @@ export const year2024: Member[] = [
   {
     name: "NISHANT GARG",
     image: nishant,
-    desc: "Software Engineer at Procore Technologie",
+
+    desc: "SWE at Procore",
+ team-2027
     github: "",
     linkedin: "https://www.linkedin.com/in/nishant-garg-968205208/",
     twitter: "",
@@ -1386,7 +1387,9 @@ export const year2024: Member[] = [
   {
     name: "DIVYANSH GARG",
     image: divyansh,
-    desc: "Software Engineer at Care Insurance",
+
+    desc: "SWE at Care Health",
+team-2027
     github: "",
     linkedin: "https://www.linkedin.com/in/dggrx/",
     twitter: "",
@@ -1416,7 +1419,9 @@ export const year2024: Member[] = [
   {
     name: "PRANJALI SRIVASTAVA",
     image: pranjali,
-    desc: "GTE at Bajaj Auto",
+
+    desc: "GTE at Bajaj Auto Ltd.",
+ team-2027
     github: "",
     linkedin: "https://www.linkedin.com/in/pranjali-srivastava-b229b8223/",
     twitter: "",
@@ -1446,7 +1451,9 @@ export const year2024: Member[] = [
   {
     name: "ASHOK KUMAR SAINI",
     image: ashok,
-    desc: "Motion Control System Engineer at Orangewood Labs",
+
+    desc: "Works at Orangewood Labs",
+team-2027
     github: "",
     linkedin: "https://www.linkedin.com/in/ashok-kumar-saini-505b9b202/",
     twitter: "",

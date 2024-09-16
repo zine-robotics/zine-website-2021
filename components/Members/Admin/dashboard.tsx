@@ -56,6 +56,7 @@ const Dashboard = () => {
     return (
         <ProtectedRoute>
             <div className="grid grid-cols-12 h-screen" style={{background: "#EFEFEF"}}>
+                <SideNav />
                 <div className="col-span-12 px-6 md:px-12 flex flex-col overflow-y-scroll md:col-span-9">
                     <h1 className="text-4xl font-bold mt-16 md:mt-8" style={{color: "#AAAAAA"}}>Admin Panel</h1>
                     <div className="grid grid-cols-6 md:grid-cols-9 grid-rows-10 gap-4 md:gap-8 my-8 flex-1">
@@ -134,7 +135,6 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <SideNav />
             </div>
         </ProtectedRoute>
       )
