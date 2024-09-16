@@ -112,6 +112,15 @@ const Dashboard = () => {
                                 <h5 className="text-2xl text-center font-bold mt-2" style={styles.textSecondary}>Tasks</h5>
                             </div>
                         </Link>
+                        {/* <Link href="/admin/createblogs">
+                        <div className="col-span-3 row-span-4 bg-white shadow-md cursor-pointer rounded-xl py-4 border-transparent border-2 hover:border-blue-400 flex flex-col justify-center">
+                                <h1 className="text-7xl text-center font-extrabold" style={styles.textPrimary}>{state.tasks}</h1>
+                                <div className="text-center mt-4">
+                                    <FontAwesomeIcon icon={faListCheck} size="2x" style={styles.textSecondary} />
+                                </div>
+                                <h5 className="text-2xl text-center font-bold mt-2" style={styles.textSecondary}>Create Blogs</h5>
+                            </div>
+                        </Link> */}
                         <div className="col-span-4 row-span-2 bg-white shadow-md cursor-pointer rounded-xl py-2 border-transparent border-2 hover:border-blue-400 flex flex-col justify-center">
                             <div className="text-center mt-2">
                                 <FontAwesomeIcon icon={faVolumeOff} size="2x" style={styles.textSecondary} />
